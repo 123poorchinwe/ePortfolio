@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Applied Geoinformatics Portfolio - AGI Master's Program</title>
+    <meta name="description" content="Professional portfolio showcasing geospatial data analysis, visualization projects, and academic progress in the Copernicus Master in Digital Earth program.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Core Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.global.prod.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+    
+    <!-- Custom Styles -->
+    <style>
+        :root {
+            --primary-teal: #2C5F5D;
+            --warm-gray: #6B7280;
+            --sage-green: #8FA68E;
+            --soft-cream: #FEFEFE;
+            --charcoal: #374151;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--soft-cream);
+            color: var(--charcoal);
+            line-height: 1.6;
+        }
+        
+        .font-display {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .hero-bg {
+            background-image: url('./resources/hero-bg-new.png');
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            min-height: 100vh;
+            width: 100%;
+        }
+        
+        .text-gradient {
+            background: linear-gradient(135deg, var(--primary-teal), var(--sage-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(44, 95, 93, 0.15);
+        }
+        
+        .skill-bar {
+            background: linear-gradient(90deg, var(--primary-teal), var(--sage-green));
+            height: 8px;
+            border-radius: 4px;
+            transition: width 1s ease-out;
+        }
+        
+        .timeline-item {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .timeline-item.animate {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.6s ease-out;
+        }
+        
+        .particle-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            min-height: 100vh;
+            background: linear-gradient(135deg, rgba(44, 95, 93, 0.1) 0%, rgba(143, 166, 142, 0.05) 100%);
+        }
+        
+        .content-overlay {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 80vh;
+            width: 100%;
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-teal);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .project-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(44, 95, 93, 0.1);
+        }
+        
+        .filter-btn {
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            background-color: var(--primary-teal);
+            color: white;
+            border-color: var(--primary-teal);
+        }
+        
+        @media (max-width: 768px) {
+            .hero-bg {
+                background-attachment: scroll;
+                background-size: cover;
+                background-position: center center;
+            }
+            .content-overlay {
+                padding-top: 5rem;
+                padding-bottom: 5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-bg {
+                background-size: cover;
+                background-position: center center;
+            }
+            .content-overlay {
+                padding-top: 3rem;
+                padding-bottom: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/90 backdrop-blur-md z-50 border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <h1 class="font-display text-xl font-semibold text-gray-900">Qinwei Zhu</h1>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#home" class="nav-link text-teal-600 px-3 py-2 text-sm font-mediumnav-link text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium">Home</a>
+                        <a href="projects.html" class="nav-link text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium">Projects</a>
+                        <a href="about.html" class="nav-link text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium">About</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-gray-700 hover:text-gray-900 focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white border-t border-gray-200">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#home" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900">Home</a>
+                <a href="projects.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900">Projects</a>
+                <a href="about.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative hero-bg flex items-center justify-center">
+        <div id="particle-container" class="particle-bg"></div>
+        <div class="content-overlay text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto py-20">
+            <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8 md:p-12 border border-white/20 mb-8">
+                <div class="mb-8">
+                    <img src="./resources/avatar.png" alt="Profile Picture" class="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-white shadow-lg">
+                </div>
+                <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6">
+                    <span id="typed-text"></span>
+                </h1>
+                <p class="text-xl sm:text-2xl text-gray-100 mb-4 max-w-2xl mx-auto">
+                    Applied Geoinformatics Graduate Student
+                </p>
+            
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <a href="projects.html" class="bg-white/90 text-gray-900 px-8 py-3 rounded-lg font-semibold hover:bg-white transition-colors duration-300 shadow-lg backdrop-blur-sm">
+                        View Projects
+                    </a>
+                    <a href="about.html" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-gray-900 transition-colors duration-300 backdrop-blur-sm">
+                        About Me
+                    </a>
+                </div>
+                
+                <!-- Social Media Links -->
+                <div class="flex justify-center space-x-6 mt-8">
+                    <a href="	qinwei.zhu@stud.plus.ac.at" class="text-white/80 hover:text-white transition-colors duration-300" title="Email">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                        </svg>
+                    </a>
+                    <a href="https://www.linkedin.com/in/%E6%B2%81%E9%9F%A6-%E6%9C%B1-25079839a/?locale=en_US" target="_blank" rel="noopener noreferrer" class="text-white/80 hover:text-white transition-colors duration-300" title="LinkedIn">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                    </a>
+                    <a href="https://github.com/123poorchinwe" target="_blank" rel="noopener noreferrer" class="text-white/80 hover:text-white transition-colors duration-300" title="GitHub">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Preview Section -->
+    <section id="projects-preview" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-display text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Featured Projects</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Explore my geospatial data analysis projects, from soil survey visualization to housing market dashboards, showcasing technical skills and academic growth.
+                </p>
+            </div>
+
+            <!-- Project Filters -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <button class="filter-btn active px-6 py-2 rounded-full text-sm font-medium bg-white text-gray-700" data-filter="all">
+                    All Projects
+                </button>
+                <button class="filter-btn px-6 py-2 rounded-full text-sm font-medium bg-white text-gray-700" data-filter="visualization">
+                    Data Visualization
+                </button>
+                <button class="filter-btn px-6 py-2 rounded-full text-sm font-medium bg-white text-gray-700" data-filter="gis">
+                    GIS Analysis
+                </button>
+                <button class="filter-btn px-6 py-2 rounded-full text-sm font-medium bg-white text-gray-700" data-filter="web">
+                    Web Development
+                </button>
+            </div>
+
+            <!-- Projects Grid -->
+            <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Soil Survey Project -->
+                <div class="project-card card-hover rounded-xl p-6 shadow-lg" data-category="visualization gis">
+                    <div class="aspect-video bg-gradient-to-br from-amber-100 to-amber-200 rounded-lg mb-4 flex items-center justify-center">
+                        <img src="./resources/soil-survey-bg.png" alt="Soil Survey Visualization" class="w-full h-full object-cover rounded-lg">
+                    </div>
+                    <h3 class="font-display text-xl font-semibold text-gray-900 mb-2">Soil Survey Visualization</h3>
+                    <p class="text-gray-600 mb-4">Interactive mapping of soil composition data with advanced geospatial analysis techniques and statistical modeling.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">Python</span>
+                        <span class="px-3 py-1 bg-green-100 text-green-800 text-xs rounded-full">QGIS</span>
+                        <span class="px-3 py-1 bg-purple-100 text-purple-800 text-xs rounded-full">R</span>
+                    </div>
+                    <a href="projects.html#soil-survey" class="text-teal-600 hover:text-teal-800 font-medium">View Details →</a>
+                </div>
+
+                <!-- Housing Data Dashboard -->
+                <div class="project-card card-hover rounded-xl p-6 shadow-lg" data-category="visualization web">
+                    <div class="aspect-video bg-gradient-to-br from-blue-100 to-blue-200 rounded-lg mb-4 flex items-center justify-center">
+                        <img src="./resources/housing-data-bg.png" alt="Housing Data Dashboard" class="w-full h-full object-cover rounded-lg">
+                    </div>
+                    <h3 class="font-display text-xl font-semibold text-gray-900 mb-2">Housing Price Dashboard</h3>
+                    <p class="text-gray-600 mb-4">Comprehensive real estate market analysis dashboard with interactive visualizations and predictive modeling.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-3 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">JavaScript</span>
+                        <span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">Vue3</span>
+                        <span class="px-3 py-1 bg-gray-100 text-gray-800 text-xs rounded-full">D3.js</span>
+                    </div>
+                    <a href="projects.html#housing-dashboard" class="text-teal-600 hover:text-teal-800 font-medium">View Details →</a>
+                </div>
+
+                <!-- Charging Stations Project -->
+                <div class="project-card card-hover rounded-xl p-6 shadow-lg" data-category="gis web">
+                    <div class="aspect-video bg-gradient-to-br from-green-100 to-green-200 rounded-lg mb-4 flex items-center justify-center">
+                        <img src="./resources/charging-stations-bg.png" alt="EV Charging Stations" class="w-full h-full object-cover rounded-lg">
+                    </div>
+                    <h3 class="font-display text-xl font-semibold text-gray-900 mb-2">EV Charging Station Network</h3>
+                    <p class="text-gray-600 mb-4">Strategic analysis of electric vehicle charging infrastructure using spatial optimization algorithms and accessibility modeling.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">Python</span>
+                        <span class="px-3 py-1 bg-green-100 text-green-800 text-xs rounded-full">PostGIS</span>
+                        <span class="px-3 py-1 bg-red-100 text-red-800 text-xs rounded-full">TypeScript</span>
+                    </div>
+                    <a href="projects.html#charging-stations" class="text-teal-600 hover:text-teal-800 font-medium">View Details →</a>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <a href="projects.html" class="bg-teal-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-teal-700 transition-colors duration-300">
+                    View All Projects
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Visualization Section -->
+    <section id="skills" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-display text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Technical Skills</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Proficiency in geospatial technologies, programming languages, and data analysis tools developed through academic coursework and practical projects.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- Skills Radar Chart -->
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <div id="skills-radar" style="width: 100%; height: 400px;"></div>
+                </div>
+
+                <!-- Skills List -->
+                <div class="space-y-6">
+                    <div class="skill-item">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-semibold text-gray-900">Python</span>
+                            <span class="text-sm text-gray-600">Advanced</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="skill-bar w-0" data-width="90%"></div>
+                        </div>
+                        <p class="text-sm text-gray-600 mt-2">Geospatial analysis, data processing, machine learning</p>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-semibold text-gray-900">Vue.js</span>
+                            <span class="text-sm text-gray-600">Intermediate</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="skill-bar w-0" data-width="75%"></div>
+                        </div>
+                        <p class="text-sm text-gray-600 mt-2">Interactive web applications, component development</p>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-semibold text-gray-900">R</span>
+                            <span class="text-sm text-gray-600">Intermediate</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="skill-bar w-0" data-width="70%"></div>
+                        </div>
+                        <p class="text-sm text-gray-600 mt-2">Statistical analysis, spatial modeling, data visualization</p>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-semibold text-gray-900">TypeScript</span>
+                            <span class="text-sm text-gray-600">Intermediate</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="skill-bar w-0" data-width="65%"></div>
+                        </div>
+                        <p class="text-sm text-gray-600 mt-2">Type-safe web development, modern JavaScript</p>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-semibold text-gray-900">GIS Software</span>
+                            <span class="text-sm text-gray-600">Advanced</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="skill-bar w-0" data-width="85%"></div>
+                        </div>
+                        <p class="text-sm text-gray-600 mt-2">QGIS, ArcGIS, spatial analysis, cartography</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Academic Timeline Section -->
+    <section id="timeline" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-display text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Academic Journey</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Current progress in the Master in Applied Geoinformatics, showcasing coursework, skills development, and academic milestones.
+                </p>
+            </div>
+
+            <div class="relative">
+                <!-- Timeline Line -->
+                <div class="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-teal-200"></div>
+
+                <!-- Timeline Items -->
+                <div class="space-y-12">
+                    <!-- Current Semester -->
+                    <div class="timeline-item flex items-center">
+                        <div class="w-1/2 pr-8 text-right">
+                            <div class="bg-white rounded-lg p-6 shadow-lg">
+                                <h3 class="font-display text-xl font-semibold text-gray-900 mb-2">Fall 2025 - Current Semester</h3>
+                                <p class="text-gray-600 mb-4">Active coursework in Applied Geoinformatics program</p>
+                                <ul class="text-sm text-gray-700 space-y-1">
+                                    <li>• Basics of Software Development</li>
+                                    <li>• Methods in Spatial Analysis</li>
+                                    <li>• Scientific Methods and Writing</li>
+                                    <li>• SDI Services Implementation</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="w-8 h-8 bg-teal-600 rounded-full border-4 border-white shadow-lg z-10"></div>
+                        <div class="w-1/2 pl-8"></div>
+                    </div>
+
+                    <!-- ePortfolio Development -->
+                    <div class="timeline-item flex items-center">
+                        <div class="w-1/2 pr-8"></div>
+                        <div class="w-8 h-8 bg-sage-green rounded-full border-4 border-white shadow-lg z-10"></div>
+                        <div class="w-1/2 pl-8">
+                            <div class="bg-white rounded-lg p-6 shadow-lg">
+                                <h3 class="font-display text-xl font-semibold text-gray-900 mb-2">ePortfolio Development</h3>
+                                <p class="text-gray-600 mb-4">Creating comprehensive digital portfolio for academic assessment</p>
+                                <ul class="text-sm text-gray-700 space-y-1">
+                                    <li>• Project documentation and reflection</li>
+                                    <li>• Technical skill demonstration</li>
+                                    <li>• Academic progress tracking</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Program Start -->
+                    <div class="timeline-item flex items-center">
+                        <div class="w-1/2 pr-8 text-right">
+                            <div class="bg-white rounded-lg p-6 shadow-lg">
+                                <h3 class="font-display text-xl font-semibold text-gray-900 mb-2">Program Start</h3>
+                                <p class="text-gray-600 mb-4">Began Master in Applied Geoinformatics program</p>
+                                <ul class="text-sm text-gray-700 space-y-1">
+                                    <li>• Orientation and program introduction</li>
+                                    <li>• Course registration and planning</li>
+                                    <li>• Academic goal setting</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="w-8 h-8 bg-gray-400 rounded-full border-4 border-white shadow-lg z-10"></div>
+                        <div class="w-1/2 pl-8"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h3 class="font-display text-2xl font-semibold mb-4">Applied Geoinformatics Portfolio</h3>
+                <p class="text-gray-400 mb-6 max-w-2xl mx-auto">
+                    This portfolio represents academic work and professional development in the Master in Applied Geoinformatics program.
+                </p>
+                <div class="flex justify-center space-x-6 mb-6">
+                    <a href="	qinwei.zhu@stud.plus.ac.at" class="text-gray-400 hover:text-white transition-colors duration-300" title="Email">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                        </svg>
+                    </a>
+                    <a href="https://www.linkedin.com/in/%E6%B2%81%E9%9F%A6-%E6%9C%B1-25079839a/?locale=en_US" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors duration-300" title="LinkedIn">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                    </a>
+                    <a href="https://github.com/123poorchinwe" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors duration-300" title="GitHub">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="border-t border-gray-700 pt-6">
+                    <p class="text-gray-500 text-sm">
+                        © 2025 AGI Portfolio.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Main JavaScript -->
+    <script src="main.js"></script>
+</body>
+</h

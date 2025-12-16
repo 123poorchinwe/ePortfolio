@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About & Academic Profile - Qinwei Zhu Portfolio</title>
+    <meta name="description" content="A consolidated profile of Qinwei Zhu's academic journey, technical skills, and coursework in Applied Geoinformatics, including a B.S. in Geographic Information Science from Nanjing Normal University.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'display': ['Playfair Display', 'serif'],
+                        'body': ['Inter', 'sans-serif'],
+                        'mono': ['JetBrains Mono', 'monospace']
+                    },
+                    colors: {
+                        'primary': '#2C5F5D', // Main Teal Color
+                        'secondary': '#8FA68E', // Sage Green Accent Color
+                        'accent': '#FFD700', // Gold Accent Color (from index.html)
+                        'charcoal': '#374151',
+                        'cream': '#FEFEFE',
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FEFEFE; /* cream */
+            color: #374151; /* charcoal */
+            line-height: 1.6;
+        }
+        
+        /* Enhanced Card Hover Animation */
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 32px rgba(44, 95, 93, 0.25); /* Primary color shadow */
+        }
+        
+        /* Navigation Link Underline Animation */
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #2C5F5D; /* primary */
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Skill Progress Bar Style */
+        .skill-progress {
+            background: linear-gradient(90deg, #2C5F5D, #8FA68E); /* primary to secondary */
+            height: 8px;
+            border-radius: 4px;
+            transition: width 1.5s ease-out;
+        }
+        
+        /* Academic/Coursework Card Base Style */
+        .academic-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(44, 95, 93, 0.1);
+        }
+        
+        .project-card-v2 {
+            border: 1px solid #E5E7EB;
+        }
+
+        /* Scroll Reveal / Fade-in Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Footer specific styling */
+        .footer-link-block {
+            padding: 0.25rem 0.5rem;
+            margin-left: -0.5rem; /* to align text */
+            transition: background-color 0.3s;
+            border-radius: 4px;
+        }
+        .footer-link-block:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+<body>
+    <nav class="fixed top-0 w-full bg-cream/90 backdrop-blur-md z-50 border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <h1 class="font-display text-xl font-semibold text-charcoal">AGI Portfolio</h1>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="index.html" class="nav-link text-gray-700 hover:text-charcoal px-3 py-2 text-sm font-medium">Home</a>
+                        <a href="projects.html" class="nav-link text-gray-700 hover:text-charcoal px-3 py-2 text-sm font-medium">Projects</a>
+                        <a href="about.html" class="nav-link text-primary px-3 py-2 text-sm font-medium">About</a> 
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-gray-700 hover:text-charcoal focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div id="mobile-menu" class="md:hidden hidden bg-cream border-t border-gray-200">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="index.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-charcoal">Home</a>
+                <a href="projects.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-charcoal">Projects</a>
+                <a href="about.html" class="block px-3 py-2 text-base font-medium text-primary">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="pt-24 pb-16 bg-gradient-to-br from-primary/5 to-secondary/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h1 class="font-display text-4xl sm:text-5xl font-bold text-charcoal mb-6">About Me — Qinwei Zhu</h1>
+                    <p class="text-xl text-gray-600 mb-6">
+                        I am a graduate student in Applied Geoinformatics at the University of Salzburg, passionate about leveraging geospatial technologies to solve real-world environmental and urban planning challenges.
+                    </p>
+                    <p class="text-lg text-gray-600 mb-8">
+                        My academic journey combines strong theoretical knowledge from my undergraduate studies in GIS with practical skills in programming, data analysis, and web development.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 items-center">
+                        <a href="projects.html" class="bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors text-center shadow-lg hover:shadow-xl">
+                            View My Projects
+                        </a>
+                        <a href="#contact-footer" class="border-2 border-primary text-primary px-6 py-3 rounded-lg font-semibold hover:bg-primary hover:text-white transition-colors text-center">
+                            Get In Touch
+                        </a>
+                    </div>
+                    
+                    <div class="flex space-x-6 mt-8">
+                        <a href="mailto:qinwei.zhu@stud.plus.ac.at" class="text-gray-600 hover:text-primary transition-colors duration-300" title="Email">
+                            <i class="fas fa-envelope text-2xl"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/%E6%B2%81%E9%9F%A6-%E6%9C%B1-25079839a/?locale=en_US" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-primary transition-colors duration-300" title="LinkedIn">
+                            <i class="fab fa-linkedin text-2xl"></i>
+                        </a>
+                        <a href="https://github.com/123poorchinwe" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-primary transition-colors duration-300" title="GitHub">
+                            <i class="fab fa-github-square text-2xl"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="text-center fade-in">
+                    <img src="./resources/avatar.png" alt="Profile Picture" class="w-80 h-80 rounded-full mx-auto border-8 border-white shadow-2xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="academic" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="font-display text-3xl sm:text-4xl font-bold text-charcoal mb-4">Academic Background</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    My educational journey has focused on developing expertise in geospatial technologies, environmental analysis, and data science.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div class="fade-in">
+                    <div class="academic-card rounded-xl p-8 shadow-lg h-full card-hover">
+                        <div class="flex items-center mb-6">
+                            <div class="w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-graduation-cap text-3xl text-primary"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-display text-xl font-semibold text-charcoal">Copernicus Master in Digital Earth</h3>
+                                <p class="text-gray-600">Applied Geoinformatics</p>
+                                <p class="text-sm text-gray-500">University of Salzburg • 2025-2027</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">
+                            A comprehensive graduate program focusing on geospatial technologies, environmental monitoring, and digital earth applications, part of the Erasmus Mundus Joint Master initiative.
+                        </p>
+                        <div class="space-y-3">
+                            <h4 class="font-semibold text-charcoal">Key Areas of Study:</h4>
+                            <ul class="text-gray-600 space-y-1 text-sm list-disc pl-5">
+                                <li>Spatial Analysis and Modeling</li>
+                                <li>Geospatial Data Infrastructure (SDI)</li>
+                                <li>Web-based GIS Development</li>
+                                <li>Environmental Monitoring Systems</li>
+                                <li>Scientific Methods and Research</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="fade-in">
+                    <div class="academic-card rounded-xl p-8 shadow-lg h-full card-hover">
+                        <div class="flex items-center mb-6">
+                            <div class="w-16 h-16 bg-secondary/10 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-university text-3xl text-secondary"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-display text-xl font-semibold text-charcoal">Bachelor of Science</h3>
+                                <p class="text-gray-600">Geographic Information Science</p>
+                                <p class="text-sm text-gray-500">Nanjing Normal University • 2020-2024</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">
+                            A comprehensive program focused on the collection, management, analysis, and visualization of spatial data, providing a strong foundation in GIS principles and technology.
+                        </p>
+                        <div class="space-y-3">
+                            <h4 class="font-semibold text-charcoal">Core Competencies:</h4>
+                            <ul class="text-gray-600 space-y-1 text-sm list-disc pl-5">
+                                <li>GIS Algorithms and Spatial Databases</li>
+                                <li>Remote Sensing and Digital Image Processing</li>
+                                <li>Cartography and Data Visualization</li>
+                                <li>Programming for Geospatial Applications (Python/C++)</li>
+                                <li>Field Surveying and GPS Data Acquisition</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="font-display text-3xl sm:text-4xl font-bold text-charcoal mb-4">Technical Skills</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Proficiency across programming languages, geospatial technologies, and analytical tools developed through academic coursework and practical projects.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div class="fade-in">
+                    <div class="bg-white rounded-xl shadow-lg p-8">
+                        <h3 class="font-display text-xl font-semibold text-charcoal mb-6">Skills Proficiency</h3>
+                        <div id="skills-chart" style="width: 100%; height: 400px;"></div>
+                    </div>
+                </div>
+
+                <div class="space-y-8 fade-in">
+                    <div class="bg-white rounded-xl shadow-lg p-6">
+                        <h3 class="font-display text-xl font-semibold text-charcoal mb-6">Programming Languages</h3>
+                        <div class="space-y-6">
+                            <div>
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="font-semibold text-charcoal">Python</span>
+                                    <span class="text-sm text-gray-600">Advanced</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="skill-progress w-0" data-width="90%"></div>
+                                </div>
+                                <p class="text-sm text-gray-600 mt-2">Geospatial analysis, data processing, machine learning, automation</p>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="font-semibold text-charcoal">R</span>
+                                    <span class="text-sm text-gray-600">Intermediate</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="skill-progress w-0" data-width="75%"></div>
+                                </div>
+                                <p class="text-sm text-gray-600 mt-2">Statistical analysis, spatial modeling, data visualization</p>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="font-semibold text-charcoal">JavaScript/TypeScript</span>
+                                    <span class="text-sm text-gray-600">Intermediate</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="skill-progress w-0" data-width="70%"></div>
+                                </div>
+                                <p class="text-sm text-gray-600 mt-2">Web development, interactive visualizations, Vue.js frameworks</p>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="font-semibold text-charcoal">HTML/CSS</span>
+                                    <span class="text-sm text-gray-600">Advanced</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="skill-progress w-0" data-width="85%"></div>
+                                </div>
+                                <p class="text-sm text-gray-600 mt-2">Responsive web design, UI/UX implementation, accessibility</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-6">
+                        <h3 class="font-display text-xl font-semibold text-charcoal mb-6">GIS & Geospatial Technologies</h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="text-center">
+                                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-2">
+                                    <i class="fas fa-map-marked-alt text-xl text-blue-600"></i>
+                                </div>
+                                <p class="text-sm text-gray-600">QGIS (Advanced)</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mx-auto mb-2">
+                                    <i class="fas fa-globe text-xl text-red-600"></i>
+                                </div>
+                                <p class="text-sm text-gray-600">ArcGIS (Intermediate)</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-2">
+                                    <i class="fas fa-database text-xl text-green-600"></i>
+                                </div>
+                                <p class="text-sm text-gray-600">PostGIS (Intermediate)</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-2">
+                                    <i class="fas fa-cubes text-xl text-purple-600"></i>
+                                </div>
+                                <p class="text-sm text-gray-600">GDAL (Intermediate)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-6">
+                        <h3 class="font-display text-xl font-semibold text-charcoal mb-6">Frameworks & Tools</h3>
+                        <div class="grid grid-cols-3 gap-4">
+                            <div class="text-center">
+                                <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-2">
+                                    <span class="text-green-600 font-bold">Vue.js</span>
+                                </div>
+                                <p class="text-sm text-gray-600">Intermediate</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mx-auto mb-2">
+                                    <span class="text-yellow-600 font-bold">D3.js</span>
+                                </div>
+                                <p class="text-sm text-gray-600">Intermediate</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mx-auto mb-2">
+                                    <span class="text-gray-600 font-bold">Git</span>
+                                </div>
+                                <p class="text-sm text-gray-600">Advanced</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="coursework" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="font-display text-3xl sm:text-4xl font-bold text-charcoal mb-4">Current Coursework & Applied Projects</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    My focus combines theoretical knowledge with hands-on application. Here are some key courses and my featured assignments.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <div class="project-card-v2 card-hover rounded-xl shadow-lg fade-in overflow-hidden bg-white">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span class="text-3xl mr-3" role="img" aria-label="Course Icon">💻</span>
+                            <h3 class="font-display text-xl font-bold text-charcoal">Basics of Software Development</h3>
+                        </div>
+                        <p class="text-gray-600 mb-4 text-sm">
+                            Foundational course covering programming principles, version control, and software engineering practices for geospatial applications.
+                        </p>
+
+                        <div class="mt-6 pt-4 border-t border-gray-100">
+                            <h4 class="font-semibold text-primary mb-2">Featured Assignment:</h4>
+                            <p class="font-mono text-base text-gray-800 mb-4 truncate">GeoJSON Validation API</p>
+                            <a href="[LINK_TO_PROJECT_1]" target="_blank" class="inline-flex items-center text-white bg-primary px-4 py-2 rounded-full text-sm font-medium hover:bg-primary/90 transition-colors">
+                                View Project Details
+                                <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card-v2 card-hover rounded-xl shadow-lg fade-in overflow-hidden bg-white">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span class="text-3xl mr-3" role="img" aria-label="Course Icon">🗺️</span>
+                            <h3 class="font-display text-xl font-bold text-charcoal">Methods in Spatial Analysis</h3>
+                        </div>
+                        <p class="text-gray-600 mb-4 text-sm">
+                            Advanced techniques for spatial data analysis including spatial statistics, geostatistics, and spatial regression modeling.
+                        </p>
+
+                        <div class="mt-6 pt-4 border-t border-gray-100">
+                            <h4 class="font-semibold text-primary mb-2">Featured Assignment:</h4>
+                            <p class="font-mono text-base text-gray-800 mb-4 truncate">Salzburg Noise Hotspot Mapping</p>
+                            <a href="[LINK_TO_PROJECT_2]" target="_blank" class="inline-flex items-center text-white bg-primary px-4 py-2 rounded-full text-sm font-medium hover:bg-primary/90 transition-colors">
+                                View Project Details
+                                <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card-v2 card-hover rounded-xl shadow-lg fade-in overflow-hidden bg-white">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span class="text-3xl mr-3" role="img" aria-label="Course Icon">🔬</span>
+                            <h3 class="font-display text-xl font-bold text-charcoal">Scientific Methods and Writing</h3>
+                        </div>
+                        <p class="text-gray-600 mb-4 text-sm">
+                            Research methodology, academic writing, and scientific communication skills for advanced research and publication.
+                        </p>
+
+                        <div class="mt-6 pt-4 border-t border-gray-100">
+                            <h4 class="font-semibold text-primary mb-2">Featured Assignment:</h4>
+                            <p class="font-mono text-base text-gray-800 mb-4 truncate">Literature Review: Climate Migration</p>
+                            <a href="[LINK_TO_PROJECT_3]" target="_blank" class="inline-flex items-center text-white bg-primary px-4 py-2 rounded-full text-sm font-medium hover:bg-primary/90 transition-colors">
+                                View Project Details
+                                <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card-v2 card-hover rounded-xl shadow-lg fade-in overflow-hidden bg-white">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span class="text-3xl mr-3" role="img" aria-label="Course Icon">🌐</span>
+                            <h3 class="font-display text-xl font-bold text-charcoal">SDI Services Implementation</h3>
+                        </div>
+                        <p class="text-gray-600 mb-4 text-sm">
+                            Design and implementation of Spatial Data Infrastructure services, web mapping, and interoperability protocols (OGC standards).
+                        </p>
+
+                        <div class="mt-6 pt-4 border-t border-gray-100">
+                            <h4 class="font-semibold text-primary mb-2">Featured Assignment:</h4>
+                            <p class="font-mono text-base text-gray-800 mb-4 truncate">WMS/WFS Implementation (PostGIS)</p>
+                            <a href="[LINK_TO_PROJECT_4]" target="_blank" class="inline-flex items-center text-white bg-primary px-4 py-2 rounded-full text-sm font-medium hover:bg-primary/90 transition-colors">
+                                View Project Details
+                                <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card-v2 card-hover rounded-xl shadow-lg fade-in overflow-hidden bg-white">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span class="text-3xl mr-3" role="img" aria-label="Course Icon">💡</span>
+                            <h3 class="font-display text-xl font-bold text-charcoal">Selected Topics in Geoinformatics</h3>
+                        </div>
+                        <p class="text-gray-600 mb-4 text-sm">
+                            Emerging trends and advanced topics, including machine learning applications, cloud computing, and big data processing in GIS.
+                        </p>
+
+                        <div class="mt-6 pt-4 border-t border-gray-100">
+                            <h4 class="font-semibold text-primary mb-2">Featured Assignment:</h4>
+                            <p class="font-mono text-base text-gray-800 mb-4 truncate">Land Cover Classification (ML)</p>
+                            <a href="[LINK_TO_PROJECT_5]" target="_blank" class="inline-flex items-center text-white bg-primary px-4 py-2 rounded-full text-sm font-medium hover:bg-primary/90 transition-colors">
+                                View Project Details
+                                <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact-footer" class="bg-charcoal text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 border-b border-gray-700 pb-10 mb-8">
+                
+                <div class="md:col-span-1">
+                    <h3 class="font-display text-2xl font-bold text-secondary mb-4">Qinwei Zhu</h3>
+                    <p class="text-gray-400 text-sm">
+                        Geoinformatics Specialist with a background in GIS (Nanjing Normal University) and current focus on Digital Earth applications (University of Salzburg).
+                    </p>
+                </div>
+
+                <div class="md:col-span-1">
+                    <h3 class="font-display text-xl font-semibold mb-4">Navigation</h3>
+                    <ul class="space-y-1">
+                        <li><a href="index.html" class="text-gray-400 hover:text-primary transition-colors footer-link-block">Home</a></li>
+                        <li><a href="projects.html" class="text-gray-400 hover:text-primary transition-colors footer-link-block">Projects</a></li>
+                        <li><a href="about.html" class="text-primary hover:text-white transition-colors footer-link-block">About & Academic</a></li>
+                    </ul>
+                </div>
+
+                <div class="md:col-span-1">
+                    <h3 class="font-display text-xl font-semibold mb-4">Connect</h3>
+                    <div class="space-y-3 text-gray-400">
+                        <p class="flex items-center">
+                            <i class="fas fa-envelope w-5 h-5 mr-3 text-primary"></i>
+                            <a href="mailto:qinwei.zhu@stud.plus.ac.at" class="hover:text-white transition-colors">qinwei.zhu@stud.plus.ac.at</a>
+                        </p>
+                        <p class="flex items-center">
+                            <i class="fab fa-linkedin w-5 h-5 mr-3 text-primary"></i>
+                            <a href="https://www.linkedin.com/in/%E6%B2%81%E9%9F%A6-%E6%9C%B1-25079839a/?locale=en_US" target="_blank" class="hover:text-white transition-colors">LinkedIn Profile</a>
+                        </p>
+                        <p class="flex items-center">
+                            <i class="fab fa-github w-5 h-5 mr-3 text-primary"></i>
+                            <a href="https://github.com/123poorchinwe" target="_blank" class="hover:text-white transition-colors">GitHub Repository</a>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="md:col-span-1 flex flex-col justify-center items-start md:items-end">
+                    <h3 class="font-display text-xl font-semibold mb-4 text-right">Ready to collaborate?</h3>
+                    <a href="mailto:qinwei.zhu@stud.plus.ac.at" class="bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors text-center w-full md:w-auto shadow-md hover:shadow-lg">
+                        Send Me a Message
+                    </a>
+                </div>
+            </div>
+            
+            <div class="text-center text-gray-500 text-sm">
+                © 2025 Qinwei Zhu. All rights reserved. Built for the Applied Geoinformatics Program.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle logic
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // ECharts for Skills Proficiency Chart
+        const skillsChart = echarts.init(document.getElementById('skills-chart'));
+        const skillsOption = {
+            tooltip: {
+                trigger: 'item'
+            },
+            legend: {
+                bottom: '0%',
+                left: 'center',
+                textStyle: {
+                    color: '#374151'
+                }
+            },
+            series: [{
+                name: 'Proficiency',
+                type: 'pie',
+                radius: ['40%', '70%'],
+                center: ['50%', '45%'],
+                avoidLabelOverlap: false,
+                itemStyle: {
+                    borderRadius: 10,
+                    borderColor: '#fff',
+                    borderWidth: 2
+                },
+                label: {
+                    show: false,
+                    position: 'center'
+                },
+                emphasis: {
+                    label: {
+                        show: true,
+                        fontSize: '18',
+                        fontWeight: 'bold'
+                    }
+                },
+                labelLine: {
+                    show: false
+                },
+                data: [
+                    // Using the new primary and secondary colors in the ECharts data
+                    { value: 90, name: 'Python', itemStyle: { color: '#2C5F5D' } },          // primary
+                    { value: 85, name: 'HTML/CSS', itemStyle: { color: '#8FA68E' } },      // secondary
+                    { value: 75, name: 'R', itemStyle: { color: '#6B7280' } },             // warm-gray
+                    { value: 70, name: 'JavaScript/TypeScript', itemStyle: { color: '#9CA3AF' } }, // lighter gray
+                    { value: 85, name: 'GIS Software', itemStyle: { color: '#4B5563' } },  // dark gray
+                    { value: 75, name: 'Web Frameworks', itemStyle: { color: '#D1D5DB' } }  // light gray
+                ]
+            }]
+        };
+        skillsChart.setOption(skillsOption);
+
+        // Animate skill bars
+        setTimeout(() => {
+            document.querySelectorAll('.skill-progress').forEach(bar => {
+                const width = bar.getAttribute('data-width');
+                bar.style.width = width;
+            });
+        }, 500);
+
+        // Resize chart on window resize
+        window.addEventListener('resize', () => {
+            skillsChart.resize();
+        });
+
+        // Scroll Reveal / Fade-in Animation
+        const faders = document.querySelectorAll('.fade-in');
+        
+        const appearOptions = {
+            threshold: 0,
+            rootMargin: "0px 0px -100px 0px"
+        };
+        
+        const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    return;
+                } else {
+                    entry.target.classList.add('visible');
+                    appearOnScroll.unobserve(entry.target);
+                }
+            });
+        }, appearOptions);
+
+        faders.forEach(fader => {
+            appearOnScroll.observe(fader);
+        });
+    </script>
+</body>
+</html>
