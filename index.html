@@ -255,164 +255,186 @@
         </div>
     </section>
 
-    <!-- Projects Preview Section -->
-    <section id="projects-preview" class="py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="font-display text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Featured Projects</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    Explore my geospatial data analysis projects, from soil survey visualization to housing market dashboards, showcasing technical skills and academic growth.
+   <section id="projects-preview" class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16 fade-in">
+            <h2 class="font-display text-3xl sm:text-4xl font-bold text-charcoal mb-4">Featured Projects</h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Explore my geospatial data analysis projects, showcasing technical skills and academic growth in Digital Earth applications.
+            </p>
+        </div>
+
+        <div class="flex flex-wrap justify-center gap-4 mb-12 fade-in">
+            <button class="filter-btn active px-6 py-2 rounded-full text-sm font-medium bg-primary text-white border border-primary hover:bg-primary/90 transition-colors" data-filter="all">
+                All Projects
+            </button>
+            <button class="filter-btn px-6 py-2 rounded-full text-sm font-medium bg-white text-charcoal border border-gray-300 hover:border-primary hover:text-primary transition-colors" data-filter="visualization">
+                Data Visualization
+            </button>
+            <button class="filter-btn px-6 py-2 rounded-full text-sm font-medium bg-white text-charcoal border border-gray-300 hover:border-primary hover:text-primary transition-colors" data-filter="gis">
+                GIS Analysis
+            </button>
+            <button class="filter-btn px-6 py-2 rounded-full text-sm font-medium bg-white text-charcoal border border-gray-300 hover:border-primary hover:text-primary transition-colors" data-filter="web">
+                Web Development
+            </button>
+        </div>
+
+        <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <div class="project-card card-hover rounded-xl p-6 shadow-lg fade-in" data-category="geomorphology remote-sensing gis">
+                <div class="aspect-video bg-gray-100 rounded-lg mb-4 flex items-center justify-center overflow-hidden border border-gray-200">
+                    <img src="./resources/GBLU.png" alt="Deep-time Digital Earth Geomorphology Working Group Logo" class="w-full h-full object-cover rounded-lg">
+                </div>
+                
+                <h3 class="font-display text-xl font-semibold text-charcoal mb-2">GBLU-DDE Geomorphology Working Group</h3>
+                
+                <p class="text-gray-600 mb-4 text-sm">
+                    A multidisciplinary working group led by Nanjing Normal University, focusing on Earth's surface processes and landform dynamics using data-driven methods, remote sensing, and machine learning for environmental decision-making.
                 </p>
+                
+                <div class="flex flex-wrap gap-2 mb-4">
+
+       
+
+        <span class="px-3 py-1 bg-red-100 text-red-800 text-xs rounded-full">Geomorphology</span>
+
+        <span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">GIS</span>
+
+    </div>
+                
+                 <a href="https://jsgeounion.njnu.edu.cn/main.html" class="text-teal-600 hover:text-teal-800 font-medium">View Details →</a>
             </div>
 
-            <!-- Project Filters -->
-            <div class="flex flex-wrap justify-center gap-4 mb-12">
-                <button class="filter-btn active px-6 py-2 rounded-full text-sm font-medium bg-white text-gray-700" data-filter="all">
-                    All Projects
-                </button>
-                <button class="filter-btn px-6 py-2 rounded-full text-sm font-medium bg-white text-gray-700" data-filter="visualization">
-                    Data Visualization
-                </button>
-                <button class="filter-btn px-6 py-2 rounded-full text-sm font-medium bg-white text-gray-700" data-filter="gis">
-                    GIS Analysis
-                </button>
-                <button class="filter-btn px-6 py-2 rounded-full text-sm font-medium bg-white text-gray-700" data-filter="web">
-                    Web Development
-                </button>
+            <div class="project-card card-hover rounded-xl p-6 shadow-lg fade-in" data-category="remote-sensing gis visualization">
+                <div class="aspect-video bg-gray-100 rounded-lg mb-4 flex items-center justify-center overflow-hidden border border-gray-200">
+                    <img src="./resources/mars.jpg" alt="Mars Summit Feature and Spatial Differentiation Visualization" class="w-full h-full object-cover rounded-lg">
+                </div>
+                
+                <h3 class="font-display text-xl font-semibold text-charcoal mb-2">Mars Summit Feature and Spatial Differentiation Analysis (DEM-based)</h3>
+                
+                <p class="text-gray-600 mb-4 text-sm">
+                    A study analyzing the spatial differentiation of Martian mountain peaks using MOLA DEM data, highlighting the **Northern Lowland/Southern Highland dichotomy** and the role of volcanism.
+                </p>
+                
+                <div class="flex flex-wrap gap-2 mb-4">
+
+        <span class="px-3 py-1 bg-red-100 text-red-800 text-xs rounded-full">Topographic Modeling</span>
+
+        <span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">GIS Analysis</span>
+
+    </div>
+                
+                <a href="projects.html#housing-dashboard" class="text-teal-600 hover:text-teal-800 font-medium">View Details →</a>
             </div>
 
-            <!-- Projects Grid -->
-            <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Soil Survey Project -->
-                <div class="project-card card-hover rounded-xl p-6 shadow-lg" data-category="visualization gis">
-                    <div class="aspect-video bg-gradient-to-br from-amber-100 to-amber-200 rounded-lg mb-4 flex items-center justify-center">
-                        <img src="./resources/soil-survey-bg.png" alt="Soil Survey Visualization" class="w-full h-full object-cover rounded-lg">
-                    </div>
-                    <h3 class="font-display text-xl font-semibold text-gray-900 mb-2">Soil Survey Visualization</h3>
-                    <p class="text-gray-600 mb-4">Interactive mapping of soil composition data with advanced geospatial analysis techniques and statistical modeling.</p>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">Python</span>
-                        <span class="px-3 py-1 bg-green-100 text-green-800 text-xs rounded-full">QGIS</span>
-                        <span class="px-3 py-1 bg-purple-100 text-purple-800 text-xs rounded-full">R</span>
-                    </div>
-                    <a href="projects.html#soil-survey" class="text-teal-600 hover:text-teal-800 font-medium">View Details →</a>
+            <div class="project-card card-hover rounded-xl p-6 shadow-lg fade-in" data-category="cartography web visualization">
+                <div class="aspect-video bg-gray-100 rounded-lg mb-4 flex items-center justify-center overflow-hidden border border-gray-200">
+                    <img src="./resources/story.png" alt="Children's Story Map Visualization" class="w-full h-full object-cover rounded-lg">
                 </div>
+                
+                <h3 class="font-display text-xl font-semibold text-charcoal mb-2">Children's Story Map: Wonders of 30° North</h3>
+                
+                <p class="text-gray-600 mb-4 text-sm">
+                    An engaging, child-friendly electronic cartography project showcasing famous scenic spots and cultural sites along the 30° North latitude, created with a whimsical style for educational guidance.
+                </p>
+                
+                 <div class="flex flex-wrap gap-2 mb-4">
 
-                <!-- Housing Data Dashboard -->
-                <div class="project-card card-hover rounded-xl p-6 shadow-lg" data-category="visualization web">
-                    <div class="aspect-video bg-gradient-to-br from-blue-100 to-blue-200 rounded-lg mb-4 flex items-center justify-center">
-                        <img src="./resources/housing-data-bg.png" alt="Housing Data Dashboard" class="w-full h-full object-cover rounded-lg">
-                    </div>
-                    <h3 class="font-display text-xl font-semibold text-gray-900 mb-2">Housing Price Dashboard</h3>
-                    <p class="text-gray-600 mb-4">Comprehensive real estate market analysis dashboard with interactive visualizations and predictive modeling.</p>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="px-3 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">JavaScript</span>
-                        <span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">Vue3</span>
-                        <span class="px-3 py-1 bg-gray-100 text-gray-800 text-xs rounded-full">D3.js</span>
-                    </div>
-                    <a href="projects.html#housing-dashboard" class="text-teal-600 hover:text-teal-800 font-medium">View Details →</a>
-                </div>
+       
 
-                <!-- Charging Stations Project -->
-                <div class="project-card card-hover rounded-xl p-6 shadow-lg" data-category="gis web">
-                    <div class="aspect-video bg-gradient-to-br from-green-100 to-green-200 rounded-lg mb-4 flex items-center justify-center">
-                        <img src="./resources/charging-stations-bg.png" alt="EV Charging Stations" class="w-full h-full object-cover rounded-lg">
-                    </div>
-                    <h3 class="font-display text-xl font-semibold text-gray-900 mb-2">EV Charging Station Network</h3>
-                    <p class="text-gray-600 mb-4">Strategic analysis of electric vehicle charging infrastructure using spatial optimization algorithms and accessibility modeling.</p>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">Python</span>
-                        <span class="px-3 py-1 bg-green-100 text-green-800 text-xs rounded-full">PostGIS</span>
-                        <span class="px-3 py-1 bg-red-100 text-red-800 text-xs rounded-full">TypeScript</span>
-                    </div>
-                    <a href="projects.html#charging-stations" class="text-teal-600 hover:text-teal-800 font-medium">View Details →</a>
-                </div>
+        <span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">Web GIS</span>
+
+        <span class="px-3 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">Cartography</span>
+
+    </div>
+                
+                 <a href="projects.html#housing-dashboard" class="text-teal-600 hover:text-teal-800 font-medium">View Details →</a>
+            </div>
+            
             </div>
 
-            <div class="text-center mt-12">
-                <a href="projects.html" class="bg-teal-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-teal-700 transition-colors duration-300">
-                    View All Projects
-                </a>
+        <div class="text-center mt-12 fade-in">
+            <a href="projects.html" class="bg-primary bg-green-100 text-black px-8 py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors duration-300 shadow-lg hover:shadow-xl">
+                View All Projects
+            </a>
+        </div>
+    </div>
+</section>
+
+<section id="skills" class="py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16 fade-in">
+            <h2 class="font-display text-3xl sm:text-4xl font-bold text-charcoal mb-4">Technical Skills</h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Proficiency in geospatial technologies, programming languages, and data analysis tools developed through academic coursework and practical projects.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="bg-white rounded-xl shadow-lg p-8 fade-in">
+                <div id="skills-radar" style="width: 100%; height: 400px;"></div>
+            </div>
+
+            <div class="space-y-6 fade-in">
+                
+                <div class="skill-item">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="font-semibold text-charcoal">Python</span>
+                        <span class="text-sm text-gray-600">Advanced</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div class="skill-bar w-0 bg-primary h-full rounded-full transition-all duration-1000" style="background: linear-gradient(90deg, #2C5F5D, #8FA68E);" data-width="90%"></div>
+                    </div>
+                    <p class="text-sm text-gray-600 mt-2">Geospatial analysis, data processing, machine learning</p>
+                </div>
+
+                <div class="skill-item">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="font-semibold text-charcoal">Vue.js</span>
+                        <span class="text-sm text-gray-600">Intermediate</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div class="skill-bar w-0 bg-primary h-full rounded-full transition-all duration-1000" style="background: linear-gradient(90deg, #2C5F5D, #8FA68E);" data-width="75%"></div>
+                    </div>
+                    <p class="text-sm text-gray-600 mt-2">Interactive web applications, component development</p>
+                </div>
+
+                <div class="skill-item">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="font-semibold text-charcoal">R</span>
+                        <span class="text-sm text-gray-600">Intermediate</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div class="skill-bar w-0 bg-primary h-full rounded-full transition-all duration-1000" style="background: linear-gradient(90deg, #2C5F5D, #8FA68E);" data-width="70%"></div>
+                    </div>
+                    <p class="text-sm text-gray-600 mt-2">Statistical analysis, spatial modeling, data visualization</p>
+                </div>
+
+                <div class="skill-item">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="font-semibold text-charcoal">TypeScript</span>
+                        <span class="text-sm text-gray-600">Intermediate</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div class="skill-bar w-0 bg-primary h-full rounded-full transition-all duration-1000" style="background: linear-gradient(90deg, #2C5F5D, #8FA68E);" data-width="65%"></div>
+                    </div>
+                    <p class="text-sm text-gray-600 mt-2">Type-safe web development, modern JavaScript</p>
+                </div>
+
+                <div class="skill-item">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="font-semibold text-charcoal">GIS Software</span>
+                        <span class="text-sm text-gray-600">Advanced</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div class="skill-bar w-0 bg-primary h-full rounded-full transition-all duration-1000" style="background: linear-gradient(90deg, #2C5F5D, #8FA68E);" data-width="85%"></div>
+                    </div>
+                    <p class="text-sm text-gray-600 mt-2">QGIS, ArcGIS, spatial analysis, cartography</p>
+                </div>
             </div>
         </div>
-    </section>
-
-    <!-- Skills Visualization Section -->
-    <section id="skills" class="py-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="font-display text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Technical Skills</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    Proficiency in geospatial technologies, programming languages, and data analysis tools developed through academic coursework and practical projects.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <!-- Skills Radar Chart -->
-                <div class="bg-white rounded-xl shadow-lg p-8">
-                    <div id="skills-radar" style="width: 100%; height: 400px;"></div>
-                </div>
-
-                <!-- Skills List -->
-                <div class="space-y-6">
-                    <div class="skill-item">
-                        <div class="flex justify-between items-center mb-2">
-                            <span class="font-semibold text-gray-900">Python</span>
-                            <span class="text-sm text-gray-600">Advanced</span>
-                        </div>
-                        <div class="w-full bg-gray-200 rounded-full h-2">
-                            <div class="skill-bar w-0" data-width="90%"></div>
-                        </div>
-                        <p class="text-sm text-gray-600 mt-2">Geospatial analysis, data processing, machine learning</p>
-                    </div>
-
-                    <div class="skill-item">
-                        <div class="flex justify-between items-center mb-2">
-                            <span class="font-semibold text-gray-900">Vue.js</span>
-                            <span class="text-sm text-gray-600">Intermediate</span>
-                        </div>
-                        <div class="w-full bg-gray-200 rounded-full h-2">
-                            <div class="skill-bar w-0" data-width="75%"></div>
-                        </div>
-                        <p class="text-sm text-gray-600 mt-2">Interactive web applications, component development</p>
-                    </div>
-
-                    <div class="skill-item">
-                        <div class="flex justify-between items-center mb-2">
-                            <span class="font-semibold text-gray-900">R</span>
-                            <span class="text-sm text-gray-600">Intermediate</span>
-                        </div>
-                        <div class="w-full bg-gray-200 rounded-full h-2">
-                            <div class="skill-bar w-0" data-width="70%"></div>
-                        </div>
-                        <p class="text-sm text-gray-600 mt-2">Statistical analysis, spatial modeling, data visualization</p>
-                    </div>
-
-                    <div class="skill-item">
-                        <div class="flex justify-between items-center mb-2">
-                            <span class="font-semibold text-gray-900">TypeScript</span>
-                            <span class="text-sm text-gray-600">Intermediate</span>
-                        </div>
-                        <div class="w-full bg-gray-200 rounded-full h-2">
-                            <div class="skill-bar w-0" data-width="65%"></div>
-                        </div>
-                        <p class="text-sm text-gray-600 mt-2">Type-safe web development, modern JavaScript</p>
-                    </div>
-
-                    <div class="skill-item">
-                        <div class="flex justify-between items-center mb-2">
-                            <span class="font-semibold text-gray-900">GIS Software</span>
-                            <span class="text-sm text-gray-600">Advanced</span>
-                        </div>
-                        <div class="w-full bg-gray-200 rounded-full h-2">
-                            <div class="skill-bar w-0" data-width="85%"></div>
-                        </div>
-                        <p class="text-sm text-gray-600 mt-2">QGIS, ArcGIS, spatial analysis, cartography</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    </div>
+</section>
 
     <!-- Academic Timeline Section -->
     <section id="timeline" class="py-20 bg-gray-50">

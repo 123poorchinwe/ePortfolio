@@ -6,15 +6,12 @@
     <title>Projects - Applied Geoinformatics Portfolio</title>
     <meta name="description" content="Detailed showcase of geospatial projects including soil survey visualization, housing data analysis, and EV charging station network planning.">
     
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Core Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.global.prod.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
@@ -23,7 +20,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-typescript.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
     
-    <!-- Custom Styles -->
     <style>
         :root {
             --primary-teal: #2C5F5D;
@@ -154,13 +150,11 @@
         }
     </style>
 </head>
-<body>
-    <!-- Navigation -->
-    <nav class="fixed top-0 w-full bg-white/90 backdrop-blur-md z-50 border-b border-gray-200">
+<body id="app"> <nav class="fixed top-0 w-full bg-white/90 backdrop-blur-md z-50 border-b border-gray-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center">
-                    <h1 class="font-display text-xl font-semibold text-gray-900">AGI Portfolio</h1>
+                    <h1 class="font-display text-xl font-semibold text-gray-900">Qinwei Zhu</h1>
                 </div>
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-8">
@@ -180,7 +174,6 @@
             </div>
         </div>
         
-        <!-- Mobile menu -->
         <div id="mobile-menu" class="md:hidden hidden bg-white border-t border-gray-200">
             <div class="px-2 pt-2 pb-3 space-y-1">
                 <a href="index.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900">Home</a>
@@ -191,7 +184,6 @@
         </div>
     </nav>
 
-    <!-- Header Section -->
     <section class="pt-24 pb-12 bg-gradient-to-br from-teal-50 to-sage-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center">
@@ -203,22 +195,18 @@
         </div>
     </section>
 
-    <!-- Projects Section -->
     <section class="py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col lg:flex-row gap-8">
-                <!-- Filter Sidebar -->
                 <div class="lg:w-1/4">
                     <div class="filter-sidebar rounded-xl p-6 shadow-lg sticky top-24">
                         <h3 class="font-display text-lg font-semibold text-gray-900 mb-4">Filter Projects</h3>
                         
-                        <!-- Search -->
                         <div class="mb-6">
                             <label for="search" class="block text-sm font-medium text-gray-700 mb-2">Search</label>
                             <input type="text" id="search" v-model="searchQuery" placeholder="Search projects..." class="search-input w-full px-4 py-2 rounded-lg focus:outline-none">
                         </div>
                         
-                        <!-- Categories -->
                         <div class="mb-6">
                             <h4 class="text-sm font-medium text-gray-700 mb-3">Categories</h4>
                             <div class="space-y-2">
@@ -241,7 +229,6 @@
                             </div>
                         </div>
                         
-                        <!-- Technologies -->
                         <div class="mb-6">
                             <h4 class="text-sm font-medium text-gray-700 mb-3">Technologies</h4>
                             <div class="flex flex-wrap gap-2">
@@ -251,14 +238,12 @@
                             </div>
                         </div>
                         
-                        <!-- Clear Filters -->
                         <button @click="clearFilters" class="w-full bg-gray-200 text-gray-700 px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-300 transition-colors">
                             Clear All Filters
                         </button>
                     </div>
                 </div>
 
-                <!-- Projects Grid -->
                 <div class="lg:w-3/4">
                     <div class="mb-6 flex justify-between items-center">
                         <p class="text-gray-600">
@@ -290,7 +275,6 @@
                         </div>
                     </div>
 
-                    <!-- No Results -->
                     <div v-if="filteredProjects.length === 0" class="text-center py-12">
                         <div class="text-gray-400 mb-4">
                             <svg class="mx-auto h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -305,19 +289,16 @@
         </div>
     </section>
 
-    <!-- Project Modal -->
     <div id="projectModal" class="modal">
         <div class="modal-content">
             <div class="relative">
                 <span class="close">&times;</span>
                 <div id="modalContent">
-                    <!-- Modal content will be populated by JavaScript -->
-                </div>
+                    </div>
             </div>
         </div>
     </div>
 
-    <!-- Footer -->
     <footer class="bg-gray-900 text-white py-12 mt-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center">
@@ -334,7 +315,6 @@
         </div>
     </footer>
 
-    <!-- Vue.js Application -->
     <script>
         const { createApp } = Vue;
 
@@ -345,42 +325,12 @@
                     selectedCategories: ['all'],
                     selectedTechnologies: [],
                     sortBy: 'title',
-                    technologies: ['Python', 'Vue.js', 'R', 'TypeScript', 'JavaScript', 'QGIS', 'PostGIS', 'D3.js', 'HTML/CSS'],
+                    // Updated technologies array to include all terms
+                    technologies: ['Python', 'Vue.js', 'R', 'TypeScript', 'JavaScript', 'QGIS', 'PostGIS', 'D3.js', 'HTML/CSS', 'Story Map', 'Web GIS', 'Cartography', 'DEM Analysis', 'Planetary GIS', 'Remote Sensing', 'Machine Learning', 'Geomorphology'],
                     projects: [
+                       
                         {
                             id: 1,
-                            title: 'Soil Survey Visualization',
-                            description: 'Interactive mapping of soil composition data with advanced geospatial analysis techniques and statistical modeling.',
-                            image: './resources/soil-survey-bg.png',
-                            category: ['visualization', 'gis'],
-                            technologies: ['Python', 'QGIS', 'R'],
-                            date: 'November 2025',
-                            complexity: 'High',
-                            details: {
-                                objective: 'Analyze and visualize soil composition data to identify patterns and relationships between soil properties and environmental factors.',
-                                methodology: 'Used Python with pandas and numpy for data processing, QGIS for spatial analysis, and R for statistical modeling and visualization.',
-                                challenges: 'Handling large datasets with missing values and integrating data from multiple sources with different coordinate systems.',
-                                outcomes: 'Developed interactive maps showing soil pH, organic matter content, and nutrient levels with statistical significance testing.',
-                                code: `import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-from sklearn.preprocessing import StandardScaler
-from sklearn.cluster import KMeans
-
-# Load and process soil data
-df = pd.read_csv('soil_survey_data.csv')
-df_clean = df.dropna(subset=['pH', 'organic_matter', 'nitrogen'])
-
-# Spatial clustering analysis
-scaler = StandardScaler()
-features = scaler.fit_transform(df_clean[['pH', 'organic_matter', 'nitrogen']])
-kmeans = KMeans(n_clusters=5, random_state=42)
-df_clean['cluster'] = kmeans.fit_predict(features)`,
-                                reflection: 'This project enhanced my understanding of soil science and geospatial analysis. I learned the importance of data preprocessing and the value of combining multiple analytical approaches to gain comprehensive insights from environmental data.'
-                            }
-                        },
-                        {
-                            id: 2,
                             title: 'Housing Price Dashboard',
                             description: 'Comprehensive real estate market analysis dashboard with interactive visualizations and predictive modeling.',
                             image: './resources/housing-data-bg.png',
@@ -417,66 +367,110 @@ export default {
                                 reflection: 'Developing this dashboard improved my web development skills and taught me the importance of user-centered design in data visualization. I gained experience in creating tools that make complex data accessible to non-technical users.'
                             }
                         },
+                        
+                        
+                        
+                        // Project 6: GBLU-DDE Geomorphology Working Group (NEW)
                         {
-                            id: 3,
-                            title: 'EV Charging Station Network',
-                            description: 'Strategic analysis of electric vehicle charging infrastructure using spatial optimization algorithms and accessibility modeling.',
-                            image: './resources/charging-stations-bg.png',
-                            category: ['gis', 'web'],
-                            technologies: ['Python', 'PostGIS', 'TypeScript'],
-                            date: 'September 2025',
+                            id:2,
+                            title: 'GBLU-DDE Geomorphology Working Group',
+                            description: 'A multidisciplinary collective dedicated to advancing our understanding of Earth\'s surface processes and landform dynamics through data-driven exploration and collaboration.',
+                            image: './resources/GBLU.png',
+                            category: ['gis', 'visualization', 'research'],
+                            technologies: ['Geomorphology', 'Remote Sensing', 'Machine Learning', 'Python'],
+                            date: 'January 2024',
                             complexity: 'High',
                             details: {
-                                objective: 'Optimize the placement of electric vehicle charging stations using spatial analysis and accessibility modeling to ensure equitable distribution.',
-                                methodology: 'Implemented spatial optimization algorithms in Python, used PostGIS for geographic data processing, and created web interface with TypeScript.',
-                                challenges: 'Balancing multiple optimization criteria including population density, traffic patterns, and grid capacity constraints.',
-                                outcomes: 'Generated optimal placement recommendations that improved accessibility by 40% while reducing infrastructure costs by 25%.',
-                                code: `-- PostGIS query for charging station analysis
-SELECT 
-    ST_AsGeoJSON(geom) as geometry,
-    population_density,
-    traffic_volume,
-    grid_capacity,
-    accessibility_score
-FROM charging_station_candidates
-WHERE ST_DWithin(geom, ST_SetSRID(ST_MakePoint(:lng, :lat), 4326), 5000)
-ORDER BY accessibility_score DESC
-LIMIT 10;`,
-                                reflection: 'This project demonstrated the practical application of geospatial analysis in urban planning. I learned about the complexities of multi-criteria optimization and the importance of stakeholder considerations in infrastructure planning.'
+                                objective: 'Advance understanding of Earth\'s surface processes and landform dynamics through data-driven exploration, remote sensing, and collaboration.',
+                                methodology: 'Employed cutting-edge methods from high-resolution satellite imagery analysis to machine learning to investigate landscape evolution. Integrated diverse research approaches.',
+                                challenges: 'Coordinating international research efforts and integrating highly diverse, large-scale geospatial datasets for meaningful analysis.',
+                                outcomes: 'Produced comprehensive insights that support environmental decision-making, informed sustainable land management, and inspired innovative research pathways.',
+                                code: `import ee
+import geemap
+# Initialize Earth Engine
+ee.Initialize()
+
+# Define study area (e.g., a sample region of interest)
+roi = ee.Geometry.Point([13.0406, 47.8095]).buffer(10000)
+
+# Load Sentinel-2 imagery
+image = ee.ImageCollection('COPERNICUS/S2_SR')
+    .filterDate('2023-01-01', '2023-12-31')
+    .filterBounds(roi)
+    .median()
+    .clip(roi)
+
+# Calculate Normalized Difference Vegetation Index (NDVI)
+ndvi = image.normalizedDifference(['B8', 'B4']).rename('NDVI')
+print("Conceptual code snippet for data-driven geomorphology analysis.")`,
+                                reflection: 'Being part of this working group provided deep exposure to international, collaborative, and data-intensive research in geomorphology, enhancing my skills in applying advanced analytical techniques to real-world landscape problems.'
                             }
                         },
+                        // Project 7: Mars Summit Feature and Spatial Differentiation Analysis (NEW)
+                        {
+                            id: 3,
+                            title: 'Mars Summit Feature and Spatial Differentiation Analysis (DEM-based)',
+                            description: 'Research on Martian mountain peaks using MOLA DEM data, revealing the planet\'s North-South dichotomy and the role of volcanism in peak formation.',
+                            image: './resources/mars.jpg',
+                            category: ['gis', 'remote-sensing', 'research'],
+                            technologies: ['DEM Analysis', 'Spatial Statistics', 'Planetary GIS', 'Python'],
+                            date: 'June 2025',
+                            complexity: 'High',
+                            details: {
+                                objective: 'Investigate the spatial differentiation and characteristics of Martian mountain peaks to understand the planet\'s geomorphological evolution and development mechanism.',
+                                methodology: 'Utilized MOLA DEM data. Employed an inverse terrain method for initial coarse extraction, followed by refinement using topographic relief filtering. Statistical analysis (e.g., bimodal elevation, kernel density, trend surface) was performed.',
+                                challenges: 'Developing a robust peak extraction algorithm applicable across diverse geological units and interpreting the complex spatial statistics of an extraterrestrial body.',
+                                outcomes: 'Confirmed the "bimodal" elevation distribution reflecting Mars\' North-South dichotomy. Identified unnamed high-altitude peaks and demonstrated the volcanic origin of high mountains, distinct from Earth\'s plate tectonics.',
+                                code: `# Python/GDAL sample code for DEM processing (Conceptual)
+from osgeo import gdal
+import numpy as np
+
+# Open Mars MOLA DEM file
+ds = gdal.Open('MOLA_DEM_Mars.tif')
+band = ds.GetRasterBand(1)
+data = band.ReadAsArray()
+
+# Implement inverse terrain to identify potential peaks
+inverted_data = np.amax(data) - data
+
+print("Martian DEM processed successfully. Peak extraction logic follows.")`,
+                                reflection: 'This academic research significantly enhanced my skills in planetary GIS, advanced digital terrain analysis (DTA), and the application of spatial statistics to large planetary datasets, deepening my understanding of extraterrestrial geomorphology.'
+                            }
+                        },
+                        // Project 8: Children's Story Map: Wonders of 30° North (NEW)
                         {
                             id: 4,
-                            title: 'DDE Data Panel',
-                            description: 'Digital Earth data visualization platform for environmental monitoring and climate analysis.',
-                            image: './resources/hero-bg.png',
-                            category: ['visualization', 'gis'],
-                            technologies: ['Python', 'R', 'JavaScript'],
-                            date: 'November 2025',
+                            title: "Children's Story Map: Wonders of 30° North",
+                            description: 'An engaging, child-friendly electronic cartography project (Story Map) showcasing famous scenic spots and cultural sites along the 30° North latitude.',
+                            image: './resources/story.png',
+                            category: ['cartography', 'web', 'visualization', 'education'],
+                            technologies: ['Story Map', 'Web GIS', 'Cartography', 'JavaScript'],
+                            date: 'April 2025',
                             complexity: 'Medium',
                             details: {
-                                objective: 'Create a comprehensive data visualization platform for Digital Earth environmental monitoring with real-time data integration.',
-                                methodology: 'Combined satellite data processing in Python, statistical analysis in R, and interactive visualizations in JavaScript.',
-                                challenges: 'Integrating multiple data sources with different temporal and spatial resolutions while maintaining data quality.',
-                                outcomes: 'Developed a functional prototype that successfully visualizes climate trends and environmental changes over time.',
-                                reflection: 'Working on this project deepened my understanding of environmental data analysis and the challenges of working with large-scale geospatial datasets. I learned valuable skills in data integration and quality control.'
-                            }
-                        },
-                        {
-                            id: 5,
-                            title: 'Python Coursework Projects',
-                            description: 'Collection of undergraduate programming assignments demonstrating foundational coding skills and algorithmic thinking.',
-                            image: './resources/housing-data-bg.png',
-                            category: ['web'],
-                            technologies: ['Python', 'HTML/CSS'],
-                            date: '2023-2024',
-                            complexity: 'Low',
-                            details: {
-                                objective: 'Complete foundational programming coursework demonstrating problem-solving skills and algorithmic thinking.',
-                                methodology: 'Implemented various algorithms and data structures using Python, with web-based interfaces for some projects.',
-                                challenges: 'Learning fundamental programming concepts and applying them to solve real-world problems.',
-                                outcomes: 'Successfully completed all assignments with high marks, building a strong foundation in programming.',
-                                reflection: 'These early projects were crucial in developing my programming skills and problem-solving approach. They taught me the importance of clean code, documentation, and systematic debugging.'
+                                objective: 'Design and implement a visually appealing and educational story map tailored for children, focusing on major landmarks near the 30° North latitude line.',
+                                methodology: 'Used a Web GIS platform (e.g., ArcGIS StoryMaps or Leaflet/Mapbox) to create an interactive narrative. Adopted a simplified, high-contrast, and whimsical cartographic style to appeal to a young audience.',
+                                challenges: 'Balancing the educational depth of the sites with the need for simplified, engaging content suitable for children. Ensuring fast loading times for interactive elements.',
+                                outcomes: 'Produced a complete digital tour that successfully guides young users through different world regions, integrating animated transitions and custom-designed symbols to illustrate geography and culture.',
+                                code: `// JavaScript/Leaflet sample for Story Map (Conceptual)
+const map = L.map('map').setView([30, 0], 2);
+
+// Add a colorful, simplified tile layer
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 18,
+    attribution: '© OpenStreetMap'
+}).addTo(map);
+
+// Custom marker for a landmark
+const customIcon = L.icon({
+    iconUrl: 'custom-icon-castle.png',
+    iconSize: [38, 95]
+});
+
+L.marker([30.3204, 35.4566], {icon: customIcon}) // Petra, Jordan
+    .addTo(map)
+    .bindPopup("<h3>Petra, Jordan</h3><p>An ancient city carved into pink stone!</p>");`,
+                                reflection: 'This assignment was a great exercise in creative cartography and user-centered design, specifically for the education sector. It emphasized that effective data communication depends entirely on understanding and designing for the target audience.'
                             }
                         }
                     ]
@@ -544,6 +538,23 @@ LIMIT 10;`,
                     const modal = document.getElementById('projectModal');
                     const modalContent = document.getElementById('modalContent');
                     
+                    // Helper function to escape code block content
+                    const escapeHtml = (unsafe) => {
+                        return unsafe.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+                    }
+
+                    // Determine the correct language class for code highlighting
+                    let codeLanguage = 'language-markup'; // Default
+                    if (project.technologies.includes('Python')) {
+                        codeLanguage = 'language-python';
+                    } else if (project.technologies.includes('JavaScript') || project.technologies.includes('Vue.js') || project.technologies.includes('D3.js')) {
+                        codeLanguage = 'language-javascript';
+                    } else if (project.technologies.includes('TypeScript')) {
+                        codeLanguage = 'language-typescript';
+                    } else if (project.technologies.includes('PostGIS')) {
+                        codeLanguage = 'language-sql';
+                    }
+                    
                     modalContent.innerHTML = `
                         <div class="p-8">
                             <div class="flex justify-between items-start mb-6">
@@ -587,7 +598,7 @@ LIMIT 10;`,
                                 
                                 <div>
                                     <h3 class="font-semibold text-lg text-gray-900 mb-3">Code Sample</h3>
-                                    <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto"><code class="language-python">${project.details.code}</code></pre>
+                                    <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto"><code class="${codeLanguage}">${escapeHtml(project.details.code)}</code></pre>
                                 </div>
                                 
                                 <div>
